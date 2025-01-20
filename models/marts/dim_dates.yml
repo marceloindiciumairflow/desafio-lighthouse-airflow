@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: dim_dates
+    description: "Date dimension, including information about day, month, year, weekday, day of the year, and month names in Portuguese."
+    columns:
+      - name: my_date
+        description: "Complete date."
+        tests:
+          - not_null
+          - unique   
+      - name: year
+        description: "Year of the date."
+      - name: month
+        description: "Month of the date in numeric format."
+      - name: month_name
+        description: "Name of the month in English."
+      - name: day
+        description: "Day of the month."
+      - name: day_name
+        description: "Name of the weekday."
+      - name: day_of_year
+        description: "Day of the year."
+      - name: month_name_pt
+        description: "Name of the month in Portuguese, using a mapping with a CASE statement."

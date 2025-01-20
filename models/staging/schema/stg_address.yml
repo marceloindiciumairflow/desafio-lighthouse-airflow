@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: stg_address
+    description: "This model processes address data, renaming and transforming fields to align with the required format."
+    columns:
+      - name: address_pk
+        description: "Primary key for the address, cast as numeric."
+        tests:
+          - not_null
+          - unique
+
+      - name: stateprovince_fk
+        description: "Foreign key linking to the state or province, cast as numeric."
+        tests:
+          - not_null
+
+      - name: addressline1
+        description: "First line of the address."
+
+      - name: addressline2
+        description: "Second line of the address, if available."
+
+      - name: city
+        description: "City where the address is located."
+
+      - name: modifieddate
+        description: "Date the address record was last modified, cast as a date."
+
+      - name: postalcode
+        description: "Postal code associated with the address."
+
+      - name: rowguid
+        description: "Unique identifier for the address record."
+
+      - name: spatiallocation
+        description: "Spatial location information for geospatial data, if available."

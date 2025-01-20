@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: fct_sales
+    description: "Model that aggregates information about sales orders, including product details, gross and net values, credit card types, and order statuses."
+    columns:
+      - name: order_pk
+        description: "Primary key of the order."
+        tests:
+          - not_null
+          - unique       
+      - name: orderdate
+        description: "Date of the order."
+      - name: ordermonth
+        description: "Month in which the order was placed."
+      - name: orderyear
+        description: "Year in which the order was placed."
+      - name: customer_fk
+        description: "Foreign key referencing the customer who made the order."
+      - name: shipaddress_fk
+        description: "Foreign key referencing the shipping address of the order."
+      - name: subtotal
+        description: "Subtotal of the order before taxes and discounts."
+      - name: totaldue
+        description: "Total amount due for the order after taxes and discounts."
+      - name: order_status
+        description: "Status of the order. Replaces null values with 'No Status'."
+      - name: count_products
+        description: "Number of different products included in the order."
+      - name: count_items
+        description: "Total number of items in the order."
+      - name: gross_value
+        description: "Gross value of the order, calculated as the sum of the gross values of each product in the order."
+      - name: cardtype
+        description: "Type of credit card used for the order. Replaces null values with 'No Creditcard'."

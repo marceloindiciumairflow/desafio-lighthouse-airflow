@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: stg_salesreason
+    description: "This model captures information about sales reasons, including the reason type and modification date."
+    columns:
+      - name: salesreason_pk
+        description: "Primary key for sales reason, cast as a numeric value."
+        tests:
+          - unique
+          - not_null
+
+      - name: name_reason
+        description: "Name of the sales reason."
+
+      - name: reasontype
+        description: "Type of the sales reason."
+
+      - name: modifieddate
+        description: "Date when the sales reason record was last modified."
+        tests:
+          - not_null

@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: dim_product
+    description: "Dimension that details orders with product information, including quantity, prices, and applied discounts."
+    columns:
+      - name: orderdetail_pk
+        description: "Primary key of the order detail."
+        tests:
+          - unique
+          - not_null
+      - name: order_fk
+        description: "Foreign key referencing the order associated with the detail."
+      - name: name_product
+        description: "Name of the product associated with the order detail."
+      - name: orderqty
+        description: "Quantity of products requested in this order detail."
+      - name: specialofferid
+        description: "Identifier of the special offer applied to the product in this order detail."
+      - name: unitprice
+        description: "Unit price of the product in this order detail."
+      - name: unitpricediscount
+        description: "Discount applied to the unit price of the product in this order detail."
+      - name: valor_liquido
+        description: "Unit price of the product after the discount is applied."

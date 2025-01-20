@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: dim_customer
+    description: "Customer dimension with detailed information about each customer"
+    columns:
+      - name: customer_pk
+        description: "Primary key of the customer. Replaces null values of customer_pk with business_fk."
+        tests:
+          - not_null
+          - unique
+      - name: name_customer
+        description: "Full name of the customer. Replaces null values with 'Not registered'."
+      - name: storeid
+        description: "ID of the store associated with the customer."
+      - name: territoryid
+        description: "ID of the territory associated with the customer."
+      - name: accountnumber
+        description: "Account number of the customer."
+      - name: business_fk
+        description: "Foreign key of the business associated with the customer."

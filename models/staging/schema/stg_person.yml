@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: stg_person
+    description: "This model processes person data, standardizing and enriching fields such as names and unique identifiers."
+    columns:
+      - name: business_fk
+        description: "Foreign key referencing the associated business entity, cast as a numeric value."
+        tests:
+          - not_null
+          - unique
+
+      - name: persontype
+        description: "Type of the person, categorizing their role or designation."
+
+      - name: namestyle
+        description: "Indicator of the naming style used for the person."
+
+      - name: title
+        description: "Title or prefix associated with the person's name."
+
+      - name: firstname
+        description: "First name of the person."
+
+      - name: middlename
+        description: "Middle name of the person, if available."
+
+      - name: lastname
+        description: "Last name or surname of the person."
+
+      - name: fullname
+        description: "Full name of the person, combining first name, middle name (if any), and last name."
+
+      - name: suffix
+        description: "Suffix appended to the person's name, if any."
+
+      - name: emailpromotion
+        description: "Indicator of the person's preference for email promotions."
+
+      - name: rowguid_person
+        description: "Globally unique identifier (GUID) for the person record, cast as a string."
+
+      - name: modifieddate
+        description: "The date when the person record was last modified."

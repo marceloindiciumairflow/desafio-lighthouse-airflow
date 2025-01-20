@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: dim_address
+    description: "Sales address dimension, including detailed information about city, state, country, and territory."
+    columns:
+      - name: address_pk
+        description: "Primary key of the address."
+        test:
+          - not_null
+          - unique          
+      - name: city
+        description: "City name."
+      - name: name_state
+        description: "State name."
+      - name: countryregion_fk
+        description: "Foreign key for the country/region."
+      - name: name_country
+        description: "Country name."
+      - name: territory_fk
+        description: "Foreign key for the territory."
+      - name: name_territory
+        description: "Territory name."

@@ -1,0 +1,80 @@
+version: 2
+
+models:
+  - name: stg_product
+    description: "This model processes product data, standardizing and organizing attributes such as identifiers, pricing, and manufacturing details."
+    columns:
+      - name: product_pk
+        description: "Primary key for the product, cast as a numeric value."
+        tests:
+          - not_null
+          - unique
+
+      - name: name_product
+        description: "Name of the product."
+
+      - name: subcategory_fk
+        description: "Foreign key referencing the product's subcategory, cast as a numeric value."
+
+      - name: model_fk
+        description: "Foreign key referencing the product's model, cast as a numeric value."
+
+      - name: productnumber
+        description: "Unique number assigned to the product."
+
+      - name: makeflag
+        description: "Indicator of whether the product is manufactured in-house."
+
+      - name: finishedgoodsflag
+        description: "Indicator of whether the product is a finished good."
+
+      - name: color
+        description: "Color of the product, if applicable."
+
+      - name: safetystocklevel
+        description: "Minimum quantity of stock required to ensure supply chain stability."
+
+      - name: reorderpoint
+        description: "Inventory level at which a reorder is triggered."
+
+      - name: standardcost
+        description: "Standard manufacturing cost of the product."
+
+      - name: listprice
+        description: "Retail price of the product."
+
+      - name: size
+        description: "Size of the product, if applicable."
+
+      - name: sizeunitmeasurecode
+        description: "Unit of measurement for the product's size."
+
+      - name: weightunitmeasurecode
+        description: "Unit of measurement for the product's weight."
+
+      - name: weight
+        description: "Weight of the product."
+
+      - name: daystomanufacture
+        description: "Number of days required to manufacture the product."
+
+      - name: productline
+        description: "Category or line to which the product belongs."
+
+      - name: class
+        description: "Class of the product, providing additional categorization."
+
+      - name: style
+        description: "Style of the product, if applicable."
+
+      - name: sellstartdate
+        description: "Date when the product became available for sale."
+
+      - name: sellenddate
+        description: "Date when the product was discontinued, if applicable."
+
+      - name: rowguid
+        description: "Globally unique identifier (GUID) for the product record."
+
+      - name: modifieddate
+        description: "Date when the product record was last modified."

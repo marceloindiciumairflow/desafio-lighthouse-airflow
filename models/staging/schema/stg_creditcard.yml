@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: stg_creditcard
+    description: "This model processes credit card data, renaming and transforming fields to ensure consistency and usability."
+    columns:
+      - name: creditcard_pk
+        description: "Primary key for the credit card, cast as a numeric value."
+        tests:
+          - not_null
+          - unique
+
+      - name: cardnumber
+        description: "Credit card number associated with the card."
+
+      - name: cardtype
+        description: "Type of credit card (e.g., Visa, MasterCard)."
+
+      - name: expiration_date
+        description: "Expiration date of the credit card, formatted as YYYY-MM-DD."

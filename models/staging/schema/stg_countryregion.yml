@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: stg_countryregion
+    description: "This model processes country and region data, renaming and transforming fields for standardization."
+    columns:
+      - name: countryregion_pk
+        description: "Primary key for the country or region, cast as a string."
+        tests:
+          - not_null
+          - unique
+
+      - name: country_name
+        description: "Name of the country or region, cast as a string."
+
+      - name: modifieddate
+        description: "Date the country or region record was last modified, cast as a date."

@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: coalesce_order
+    description: "Model that combines order information with sales reasons, replacing null values with defaults."
+    columns:
+      - name: salesreason_pk
+        description: "Primary key of the sales reason. Replaces null values with 0."
+        tests:
+          - unique
+          - not_null
+      - name: order_fk
+        description: "Foreign key referencing the order associated with the sales reason."
+      - name: name_reason
+        description: "Name of the sales reason. Replaces null values with 'No sales reason.'"
+      - name: reasontype
+        description: "Type of the sales reason. Replaces null values with 'No reason type.'"

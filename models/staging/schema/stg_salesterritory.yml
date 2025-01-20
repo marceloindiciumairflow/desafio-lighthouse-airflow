@@ -1,0 +1,40 @@
+version: 2
+
+models:
+  - name: stg_salesterritory
+    description: "This model represents sales territory data, including territory name, sales and cost metrics, and modification date."
+    columns:
+      - name: territory_pk
+        description: "Primary key for the sales territory, cast as numeric."
+        tests:
+          - unique
+          - not_null
+
+      - name: territory_name
+        description: "Name of the sales territory."
+
+      - name: countryregioncode
+        description: "Code representing the country or region of the sales territory."
+
+      - name: group_
+        description: "Group associated with the sales territory."
+        
+      - name: salesytd
+        description: "Year-to-date sales for the territory."
+
+      - name: saleslastyear
+        description: "Sales from the previous year for the territory."
+
+      - name: costytd
+        description: "Year-to-date cost for the territory."
+
+      - name: costlastyear
+        description: "Cost from the previous year for the territory."
+
+      - name: rowguid
+        description: "Unique identifier for the row."
+
+      - name: modifieddate
+        description: "Date when the sales territory record was last modified."
+        tests:
+          - not_null

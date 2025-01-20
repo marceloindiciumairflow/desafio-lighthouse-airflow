@@ -1,0 +1,80 @@
+version: 2
+
+models:
+  - name: stg_salesorderheader
+    description: "This model processes the header data for sales orders, including customer, sales person, shipping information, and financial details."
+    columns:
+      - name: order_pk
+        description: "Primary key for the sales order, cast as a numeric value."
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_fk
+        description: "Foreign key referencing the customer placing the order, cast as a numeric value."
+
+      - name: salesperson_fk
+        description: "Foreign key referencing the salesperson handling the order."
+
+      - name: territory_fk
+        description: "Foreign key referencing the territory associated with the order."
+
+      - name: billaddress_fk
+        description: "Foreign key referencing the billing address for the order."
+
+      - name: shipaddress_fk
+        description: "Foreign key referencing the shipping address for the order."
+
+      - name: shipmethod_fk
+        description: "Foreign key referencing the shipping method used for the order."
+
+      - name: creditcard_fk
+        description: "Foreign key referencing the credit card used for payment."
+
+      - name: currencyrated_fk
+        description: "Foreign key referencing the currency rate applied to the order."
+
+      - name: revisionnumber
+        description: "Revision number of the sales order."
+
+      - name: orderdate
+        description: "The date when the order was placed."
+
+      - name: duedate
+        description: "The expected delivery date for the order."
+
+      - name: shipdate
+        description: "The date when the order was shipped."
+
+      - name: status
+        description: "Current status of the order."
+
+      - name: onlineorderflag
+        description: "Flag indicating whether the order was placed online."
+
+      - name: purchaseordernumber
+        description: "Purchase order number associated with the order."
+
+      - name: accountnumber
+        description: "Account number used for billing purposes."
+
+      - name: creditcardapprovalcode
+        description: "Approval code for the credit card transaction."
+
+      - name: subtotal
+        description: "Subtotal of the order before taxes and shipping."
+
+      - name: taxamt
+        description: "Amount of tax charged on the order."
+
+      - name: freight
+        description: "Freight cost for shipping the order."
+
+      - name: totaldue
+        description: "Total amount due for the order, including taxes and freight."
+
+      - name: rowguid
+        description: "Globally unique identifier (GUID) for the sales order."
+
+      - name: modifieddate
+        description: "Date when the sales order header record was last modified."

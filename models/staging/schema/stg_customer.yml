@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: stg_customer
+    description: "This model processes customer data, renaming and transforming fields for consistent and accurate representation."
+    columns:
+      - name: customer_pk
+        description: "Primary key for the customer, cast as a numeric value."
+        tests:
+          - not_null
+          - unique
+
+      - name: person_fk
+        description: "Foreign key referencing the associated person, cast as a numeric value."
+
+      - name: storeid
+        description: "Identifier for the store associated with the customer."
+
+      - name: territoryid
+        description: "Identifier for the territory associated with the customer."
+
+      - name: modifieddate
+        description: "The date when the customer record was last modified."
+
+      - name: rowguid_customer
+        description: "Globally unique identifier (GUID) for the customer record, cast as a string."
