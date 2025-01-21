@@ -38,43 +38,48 @@ with
     )
 
     , join_sales_address as (
-        select
-            salesorder.order_pk 
+        select distinct
+            salesorder.order_pk
             , salesorder.shipaddress_fk
             , address.address_pk
             , address.stateprovince_fk
             , address.city
         from salesorder
         left join address
-                on salesorder.shipaddress_fk = address.address_pk
+            on salesorder.shipaddress_fk = address.address_pk
     )
 
     , join_state as (
-        select
-            join_sales_address.order_pk 
+        select distinct
+            join_sales_address.order_pk
             , join_sales_address.address_pk
             , join_sales_address.city
             , state.name_state
             , state.countryregion_fk
             , state.territory_fk
         from join_sales_address
-        left join state 
+        left join state
             on join_sales_address.stateprovince_fk = state.stateprovince_pk
     )
 
     , join_country_territory as (
-        select
+        select distinct
             join_state.address_pk
             , join_state.city
             , join_state.name_state
             , country.country_name
             , territory.territory_name
         from join_state
-        left join country 
+        left join country
             on join_state.countryregion_fk = country.countryregion_pk
         left join territory
             on join_state.territory_fk = territory.territory_pk
     )
 
-select *
+select distinct
+    address_pk
+    , city
+    , name_state
+    , country_name
+    , territory_name
 from join_country_territory
