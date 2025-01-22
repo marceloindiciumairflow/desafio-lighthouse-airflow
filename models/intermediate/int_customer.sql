@@ -17,15 +17,16 @@ with
 
     , int_customer as (
         select 
-            coalesce(customer.customer_pk, person.business_fk) as customer_pk -- substitui valores nulos de customer_pk por business_fk
-            , person.business_fk
-            , customer.storeid
+            coalesce(customer_pk, business_fk) as customer_pk -- substitui valores nulos de customer_pk por business_fk
+            , business_fk
+            , storeid
             , coalesce(person.fullname, 'not registered') as name_customer
-            , customer.territoryid 
+            , territoryid 
             from customer
             left join person
                 on customer.person_fk = person.business_fk
     )
+
         select *
         from int_customer
         

@@ -115,9 +115,10 @@ with
         on order_orderdetail.creditcard_fk = creditcard.creditcard_pk
 )
 
+-- Agregando os valores para calcular o total bruto e a contagem de itens
     , aggregated_sales as (
         select 
-            order_pk as pk_order
+            order_pk
             , sum(valor_bruto) as gross_value
             , sum(orderqty) as count_items
         from order_orderdetail_creditcard
@@ -127,7 +128,7 @@ with
     , sales_creditcard as (
         select 
             md5(concat(order_pk, orderdetail_pk)) as sales_sk
-            , order_pk
+            , order_pk as orders_pk
             , orderdetail_pk
             , product_pk
             , subcategory_fk
@@ -139,7 +140,7 @@ with
             , order_year
             , subtotal
             , totaldue
-            , order_status
+            , coalesce(order_status, 'No Status') as order_status
             , orderqty
             , unitprice
             , unitpricediscount
@@ -152,7 +153,7 @@ with
             , productline
             , sellstartdate
             , sellenddate 
-            , cardtype
+            , coalesce(cardtype, 'No Creditcard') as cardtype
             , expiration_date
         from order_orderdetail_creditcard
         left join product
@@ -162,7 +163,7 @@ with
     , fct_sales as (
         select 
             sales_sk
-            , order_pk
+            , orders_pk
             , orderdetail_pk
             , product_pk
             , subcategory_fk
@@ -193,7 +194,7 @@ with
             , count_items
         from sales_creditcard
         left join aggregated_sales
-            on sales_creditcard.order_pk = aggregated_sales.pk_order
+            on sales_creditcard.orders_pk = aggregated_sales.order_pk
 )
 
 select *

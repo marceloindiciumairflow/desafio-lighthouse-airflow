@@ -1,8 +1,12 @@
 with
-    dim_salesreason as (
-        select *
-        from {{ ref('int_salesreason') }}
+    salesreason as (
+        select 
+            salesreason_pk
+            , name_reason
+            , reasontype 
+            , modifieddate
+        from {{ ref('stg_salesreason') }}
     )
 
     select *
-    from dim_salesreason
+    from salesreason

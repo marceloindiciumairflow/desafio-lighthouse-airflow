@@ -191,10 +191,15 @@ with
             , expiration_date
             , gross_value
             , count_items
+            , orderqty * (unitprice) as total_price   -----retirar
         from sales_creditcard
         left join aggregated_sales
             on sales_creditcard.order_pk = aggregated_sales.pk_order
 )
 
-select *
-from fct_sales
+
+    select 
+        SUM(total_price) AS total_vendas_brutas_2011
+    from fct_sales
+    where EXTRACT(YEAR FROM ORDERDATE) = 2011
+

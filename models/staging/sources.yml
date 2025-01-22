@@ -12,6 +12,8 @@ sources:
 
       - name: customer
 
+      - name: employee
+
       - name: person
 
       - name: product

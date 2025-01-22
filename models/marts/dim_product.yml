@@ -2,24 +2,73 @@ version: 2
 
 models:
   - name: dim_product
-    description: "Dimension that details orders with product information, including quantity, prices, and applied discounts."
+    description: "Dimension table containing product details, including attributes, pricing, and categorization."
     columns:
-      - name: orderdetail_pk
-        description: "Primary key of the order detail."
+      - name: product_pk
+        description: "Primary key for the product."
         tests:
-          - unique
           - not_null
-      - name: order_fk
-        description: "Foreign key referencing the order associated with the detail."
+          - unique
+
+      - name: subcategory_fk
+        description: "Foreign key referencing the product subcategory."
+        
       - name: name_product
-        description: "Name of the product associated with the order detail."
-      - name: orderqty
-        description: "Quantity of products requested in this order detail."
-      - name: specialofferid
-        description: "Identifier of the special offer applied to the product in this order detail."
-      - name: unitprice
-        description: "Unit price of the product in this order detail."
-      - name: unitpricediscount
-        description: "Discount applied to the unit price of the product in this order detail."
-      - name: valor_liquido
-        description: "Unit price of the product after the discount is applied."
+        description: "Name of the product."
+        
+      - name: productnumber
+        description: "Unique identifier for the product."
+        
+      - name: makeflag
+        description: "Indicates whether the product is made internally."
+        
+      - name: finishedgoodsflag
+        description: "Indicates if the product is a finished good."
+        
+      - name: color
+        description: "Color of the product."
+        
+      - name: safetystocklevel
+        description: "Minimum quantity of the product to maintain in inventory."
+        
+      - name: reorderpoint
+        description: "Inventory level at which the product should be reordered."
+        
+      - name: standardcost
+        description: "Standard manufacturing cost of the product."
+        
+      - name: listprice
+        description: "List price of the product."
+        
+      - name: size
+        description: "Size attribute of the product."
+        
+      - name: sizeunitmeasurecode
+        description: "Unit of measure for the product size."
+        
+      - name: weightunitmeasurecode
+        description: "Unit of measure for the product weight."
+        
+      - name: weight
+        description: "Weight of the product."
+        
+      - name: daystomanufacture
+        description: "Number of days required to manufacture the product."
+        
+      - name: productline
+        description: "Categorization of the product line."
+        
+      - name: class
+        description: "Classification of the product (e.g., High, Medium, Low)."
+        
+      - name: style
+        description: "Style of the product (e.g., Standard, Luxury)."
+        
+      - name: sellstartdate
+        description: "Date when the product became available for sale."
+        
+      - name: sellenddate
+        description: "Date when the product was discontinued."
+        
+      - name: modifieddate
+        description: "Date when the product record was last modified."

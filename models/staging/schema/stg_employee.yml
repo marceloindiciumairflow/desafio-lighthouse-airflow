@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: stg_employee
+    description: Combined table of employee and internet employee data.
+    columns:
+      - name: employee_pk
+        description: Primary key for the employee.
+        tests:
+          - not_null
+          - unique
+
+      - name: nationalidnumber
+        description: National ID number of the employee.
+
+      - name: sickleavehours
+        description: Number of sick leave hours for the employee.
+
+      - name: gender
+        description: Gender of the employee.
+
+      - name: hiredate
+        description: Hire date of the employee.
+
+      - name: birthdate
+        description: Birth date of the employee.
+        
