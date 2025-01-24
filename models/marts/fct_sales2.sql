@@ -5,7 +5,7 @@ with
             , creditcard_fk
             , customer_fk
             , shipaddress_fk
-            , businessentity_fk
+            , coalesce(businessentity_fk, 'internet') as businessentity_fk
             , orderdate
             , order_month
             , order_year
@@ -65,6 +65,7 @@ with
     , order_orderdetail as (
         select 
            order_pk
+           , order_fk
             , creditcard_fk
             , customer_fk
             , shipaddress_fk
@@ -80,8 +81,6 @@ with
             , orderqty
             , unitprice
             , unitpricediscount
-            , row_number() over (partition by orders.order_pk order by orderdetail.order_fk) as row_orderdetail
-            , orderdetail.orderqty * orderdetail.unitprice as valor_bruto
         from orders
         left join orderdetail
             on orders.order_pk = orderdetail.order_fk
@@ -105,20 +104,19 @@ with
             , orderqty
             , unitprice
             , unitpricediscount
-            , row_orderdetail
-            , valor_bruto
             , cardnumber
             , cardtype
             , expiration_date
+            , row_number() over (partition by order_pk order by order_fk) as row_orderdetail
+            , orderqty * unitprice as valor_bruto
     from order_orderdetail
     left join creditcard
         on order_orderdetail.creditcard_fk = creditcard.creditcard_pk
 )
 
--- Agregando os valores para calcular o total bruto e a contagem de itens
     , aggregated_sales as (
         select 
-            order_pk
+            order_pk as pk_order
             , sum(valor_bruto) as gross_value
             , sum(orderqty) as count_items
         from order_orderdetail_creditcard
@@ -128,8 +126,9 @@ with
     , sales_creditcard as (
         select 
             md5(concat(order_pk, orderdetail_pk)) as sales_sk
-            , order_pk as orders_pk
+            , order_pk
             , orderdetail_pk
+            , businessentity_fk
             , product_pk
             , subcategory_fk
             , creditcard_pk
@@ -140,7 +139,7 @@ with
             , order_year
             , subtotal
             , totaldue
-            , coalesce(order_status, 'No Status') as order_status
+            , order_status
             , orderqty
             , unitprice
             , unitpricediscount
@@ -153,7 +152,7 @@ with
             , productline
             , sellstartdate
             , sellenddate 
-            , coalesce(cardtype, 'No Creditcard') as cardtype
+            , cardtype
             , expiration_date
         from order_orderdetail_creditcard
         left join product
@@ -163,10 +162,11 @@ with
     , fct_sales as (
         select 
             sales_sk
-            , orders_pk
-            , orderdetail_pk
+            , order_pk
             , product_pk
+            , orderdetail_pk
             , subcategory_fk
+            , businessentity_fk
             , creditcard_pk
             , customer_fk
             , shipaddress_fk
@@ -176,11 +176,7 @@ with
             , subtotal
             , totaldue
             , coalesce(order_status, 'No Status') as order_status
-            , orderqty
-            , unitprice
-            , unitpricediscount
             , row_orderdetail
-            , valor_bruto
             , name_product
             , productnumber
             , standardcost
@@ -190,11 +186,22 @@ with
             , sellenddate 
             , coalesce(cardtype, 'No Creditcard') as cardtype
             , expiration_date
-            , gross_value
+            , orderqty
+            , unitprice
+            , unitpricediscount
             , count_items
+            , valor_bruto
+            , gross_value
+            , orderqty*unitprice*(1 - unitpricediscount) as valor_liquido
+            , case 
+                 when count_items > 0 
+                    then (orderqty*unitprice*(1 - unitpricediscount)) / count_items
+                else 0
+            end as ticket_medio
+
         from sales_creditcard
         left join aggregated_sales
-            on sales_creditcard.orders_pk = aggregated_sales.order_pk
+            on sales_creditcard.order_pk = aggregated_sales.pk_order
 )
 
 select *

@@ -7,19 +7,11 @@ with
             , productnumber
             , makeflag
             , finishedgoodsflag
-            , color
             , safetystocklevel
             , reorderpoint 
             , standardcost
             , listprice
-            , size
-            , sizeunitmeasurecode
-            , weightunitmeasurecode
-            , weight
             , daystomanufacture
-            , productline
-            , class
-            , style
             , sellstartdate
             , sellenddate
             , modifieddate
@@ -28,3 +20,4 @@ with
 
 select *
 from dim_product
+

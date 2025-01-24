@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: dim_product
-    description: "Dimension table containing product details, including attributes, pricing, and categorization."
+    description: "Dimension table containing detailed information about products, including manufacturing, inventory, and sales data."
     columns:
       - name: product_pk
         description: "Primary key for the product."
@@ -12,63 +12,39 @@ models:
 
       - name: subcategory_fk
         description: "Foreign key referencing the product subcategory."
-        
+
       - name: name_product
         description: "Name of the product."
-        
+
       - name: productnumber
         description: "Unique identifier for the product."
-        
+
       - name: makeflag
-        description: "Indicates whether the product is made internally."
-        
+        description: "Indicates whether the product is manufactured (1) or purchased (0)."
+
       - name: finishedgoodsflag
-        description: "Indicates if the product is a finished good."
-        
-      - name: color
-        description: "Color of the product."
-        
+        description: "Indicates whether the product is a finished good (1) or not (0)."
+
       - name: safetystocklevel
-        description: "Minimum quantity of the product to maintain in inventory."
-        
+        description: "Minimum inventory level required to avoid stockouts."
+
       - name: reorderpoint
-        description: "Inventory level at which the product should be reordered."
-        
+        description: "Inventory level at which a reorder should be placed."
+
       - name: standardcost
         description: "Standard manufacturing cost of the product."
-        
+
       - name: listprice
-        description: "List price of the product."
-        
-      - name: size
-        description: "Size attribute of the product."
-        
-      - name: sizeunitmeasurecode
-        description: "Unit of measure for the product size."
-        
-      - name: weightunitmeasurecode
-        description: "Unit of measure for the product weight."
-        
-      - name: weight
-        description: "Weight of the product."
-        
+        description: "List price of the product for customers."
+
       - name: daystomanufacture
         description: "Number of days required to manufacture the product."
-        
-      - name: productline
-        description: "Categorization of the product line."
-        
-      - name: class
-        description: "Classification of the product (e.g., High, Medium, Low)."
-        
-      - name: style
-        description: "Style of the product (e.g., Standard, Luxury)."
-        
+
       - name: sellstartdate
-        description: "Date when the product became available for sale."
-        
+        description: "Start date when the product became available for sale."
+
       - name: sellenddate
-        description: "Date when the product was discontinued."
-        
+        description: "End date when the product was no longer available for sale."
+
       - name: modifieddate
-        description: "Date when the product record was last modified."
+        description: "Date when the product information was last modified."

@@ -40,3 +40,6 @@ models:
     # Applies to all files under models/marts/
     marts:
       +materialized: table
+    intermediate:
+      +materialized: table
+
