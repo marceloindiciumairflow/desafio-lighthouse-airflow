@@ -3,29 +3,38 @@ with
         select
             reason_sk
             , salesreason_pk
-            , name_reason
-            , reasontype
         from {{ ref('dim_salesreason') }}
+        where salesreason_pk between 0 and 10 -- Filtra os valores de salesreason_pk
     )
-    , sales_data as (
+    , representative_orders as (
         select
-            sales_sk
-            , salesreason_fk
+            salesreason_fk
+            , min(order_pk) as representative_order_pk -- Seleciona um valor representativo de order_pk
         from {{ ref('fct_sales') }}
+        where salesreason_fk between 0 and 10 -- Filtra os valores de salesreason_fk
+        group by salesreason_fk
+    )
+    , unique_salesreason as (
+        select
+            salesreason_pk
+            , reason_sk
+            , coalesce(representative_order_pk, 0) as order_pk -- Garante que order_pk não seja nulo
+        from salesreason_data
+        left join representative_orders
+            on salesreason_data.salesreason_pk = representative_orders.salesreason_fk
     )
     , bridge_salesreason as (
         select
-            md5(concat(sales_sk, reason_sk)) as bridge_sk
-            , sales_sk
-            , reason_sk
-            , row_number() over (partition by sales_sk, salesreason_fk order by reason_sk) as bridge_row_number
+            md5(concat(cast(salesreason_pk as string), cast(order_pk as string))) as bridge_sk
             , salesreason_pk
-            , name_reason
-            , reasontype
-        from sales_data
-        inner join salesreason_data
-            on sales_data.salesreason_fk = salesreason_data.salesreason_pk
+            , order_pk
+            , reason_sk
+        from unique_salesreason
     )
 
-select *
+select salesreason_pk
+    , bridge_sk
+    , reason_sk
 from bridge_salesreason
+group by salesreason_pk
+
