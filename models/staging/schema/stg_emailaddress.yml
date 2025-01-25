@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: email
+    description: "Model to extract the email address from the 'emailaddress' structure."
+    columns:
+      - name: emailaddressid
+        description: "Unique identifier for the email address."
+        tests:
+          - not_null
+          - unique
+
+      - name: emailaddress
+        description: "Extracted email address from the 'emailaddress' structure."
+
+      - name: businessentityid
+        description: "Identifier linking the email address to a business entity."
+
+      - name: modifieddate
+        description: "The date when the email address record was last modified."
+
+      - name: rowguid
+        description: "Global unique identifier for the record."
+
+      - name: _sdc_table_version
+        description: "Version of the source table as captured by the system."
+
+      - name: _sdc_received_at
+        description: "Timestamp when the data was received by the system."
+
+      - name: _sdc_sequence
+        description: "Sequence number for ordering data in the system."
+
+      - name: _sdc_batched_at
+        description: "Timestamp indicating when the data was included in a batch."

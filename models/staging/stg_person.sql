@@ -10,7 +10,7 @@ with
             , lastname 
             , concat(firstname, ' ', coalesce(middlename, ''), ' ', lastname) as fullname
             , suffix 
-            , emailpromotion
+            , cast(emailpromotion as string) as emailpromotion
             , cast (rowguid as string)  as rowguid_person
             , cast (modifieddate as date) as modifieddate
         from {{ source('desafio_lh_marcelo', 'person') }}
@@ -21,6 +21,7 @@ with
             "0" as business_fk
             , "IT" as persontype
             , "NA" as fullname
+            , "NA" as emailpromotion
         from person
         limit 1
     )
@@ -30,12 +31,14 @@ with
             business_fk
             , fullname
             , persontype
+            , emailpromotion
         from internet_person
         union all
         select
             business_fk
             , fullname
             , persontype
+            , emailpromotion
         from person
     )
 
