@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: dim_employee
+    description: Dimensional table combining employee and person data.
+    columns:
+      - name: employee_pk
+        description: Primary key for the employee.
+        tests:
+          - not_null
+          - unique
+
+      - name: nationalidnumber
+        description: National ID number of the employee.
+        
+      - name: sickleavehours
+        description: Number of sick leave hours for the employee.
+        
+      - name: gender
+        description: Gender of the employee.
+        
+      - name: hiredate
+        description: Hire date of the employee.
+        
+      - name: birthdate
+        description: Birthdate of the employee.
+        
+      - name: fullname
+        description: Full name of the employee from the person table.
+        
+      - name: persontype
+        description: Type of person, from the person table.
+        

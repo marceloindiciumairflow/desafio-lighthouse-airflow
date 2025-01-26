@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: fct_sales
+  - name: fct_teste
     description: "Fact table consolidating sales data, including deduplicated order details, products, credit cards, and sales reasons."
     columns:
       - name: sales_sk

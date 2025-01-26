@@ -13,7 +13,7 @@ models:
       - name: customer_fk
         description: "Foreign key referencing the customer placing the order, cast as a numeric value."
 
-      - name: salesperson_fk
+      - name: businessentity_fk
         description: "Foreign key referencing the salesperson handling the order."
 
       - name: territory_fk

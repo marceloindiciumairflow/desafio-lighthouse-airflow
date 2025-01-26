@@ -3,7 +3,7 @@ with
     select 
         order_pk
         , customer_fk
-        , salesperson_fk
+        , businessentity_fk
         , territory_fk
         , billaddress_fk
         , shipaddress_fk
@@ -45,7 +45,7 @@ with
         select
           orderheader.order_pk
         , orderheader.customer_fk
-        , orderheader.salesperson_fk
+        , orderheader.businessentity_fk
         , orderheader.territory_fk
         , orderheader.billaddress_fk
         , orderheader.shipaddress_fk

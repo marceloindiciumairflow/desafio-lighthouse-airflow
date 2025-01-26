@@ -37,6 +37,9 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   desafio_lh_marcelo:
-    # Applies to all files under models/example/
-    example:
+    # Applies to all files under models/marts/
+    marts:
       +materialized: table
+    intermediate:
+      +materialized: table
+

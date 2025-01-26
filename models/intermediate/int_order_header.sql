@@ -3,7 +3,7 @@ with
     select 
         cast(salesorderid as numeric) as order_pk 
         , cast(customerid as numeric) as customer_fk
-        , cast(salespersonid as numeric) as salesperson_fk
+        , cast(salespersonid as string) as businessentity_fk
         ,  cast(territoryid as numeric) as  territory_fk
         ,  cast(billtoaddressid as numeric) as billaddress_fk
         ,  cast(shiptoaddressid as numeric) as  shipaddress_fk

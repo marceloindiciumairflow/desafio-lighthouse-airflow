@@ -11,6 +11,9 @@ sources:
       - name: creditcard
 
       - name: customer
+      - name: emailaddress
+
+      - name: employee
 
       - name: person
 

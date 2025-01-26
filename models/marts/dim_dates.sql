@@ -1,9 +1,9 @@
 with 
     dim_dates as (
         select 
-            date_add(date('2018-01-01'), interval day_offset day) as my_date
+            date_add(date('2011-01-01'), interval day_offset day) as my_date
         from 
-            unnest(generate_array(0, 5479)) as day_offset -- 5479 dias (15 anos)
+            unnest(generate_array(0, 1460)) as day_offset
     )
 
     , dates as ( 

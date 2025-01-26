@@ -1,8 +1,8 @@
 with
     customer as (
     select
-        cast (customerid as numeric) as customer_pk
-        , cast(personid as numeric) as person_fk
+        cast (customerid as string) as customer_pk
+        , cast(personid as string) as person_fk
         , storeid
         , territoryid
         , cast(modifieddate as date) as modifieddate

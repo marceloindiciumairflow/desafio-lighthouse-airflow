@@ -1,0 +1,109 @@
+version: 2
+
+models:
+  - name: aggregrate_table
+    description: "Aggregated table combining data from orders, products, addresses, states, countries, employees, and personal information."
+    columns:
+      - name: orderdetail_pk
+        description: "Primary key of the order detail."
+        tests:
+          - not_null
+
+      - name: order_pk
+        description: "Primary key of the order."
+
+      - name: creditcard_fk
+        description: "Foreign key for credit card information."
+
+      - name: customer_fk
+        description: "Foreign key for the customer."
+
+      - name: shipaddress_fk
+        description: "Foreign key for the shipping address."
+
+      - name: businessentity_fk
+        description: "Foreign key for the business entity; null values are replaced with 'internet'."
+
+      - name: orderdate
+        description: "Date of the order."
+
+      - name: order_month
+        description: "Month of the order."
+
+      - name: order_year
+        description: "Year of the order."
+
+      - name: subtotal
+        description: "Subtotal of the order."
+
+      - name: totaldue
+        description: "Total amount due for the order."
+
+      - name: order_status
+        description: "Status of the order."
+
+      - name: product_fk
+        description: "Foreign key for the product."
+
+      - name: orderqty
+        description: "Quantity of the order."
+
+      - name: unitprice
+        description: "Unit price of the product."
+
+      - name: unitpricediscount
+        description: "Discount applied to the unit price."
+
+      - name: name_product
+        description: "Name of the product."
+
+      - name: subcategory_fk
+        description: "Foreign key for the product subcategory."
+
+      - name: model_fk
+        description: "Foreign key for the product model."
+
+      - name: stateprovince_fk
+        description: "Foreign key for the state or province."
+
+      - name: city
+        description: "City of the shipping address."
+
+      - name: name_state
+        description: "Name of the state or province."
+
+      - name: countryregion_fk
+        description: "Foreign key for the country or region."
+
+      - name: territory_fk
+        description: "Foreign key for the sales territory."
+
+      - name: country_name
+        description: "Name of the country."
+
+      - name: nationalidnumber
+        description: "National ID number of the employee."
+
+      - name: sickleavehours
+        description: "Number of sick leave hours taken by the employee."
+
+      - name: gender
+        description: "Gender of the employee."
+
+      - name: hiredate
+        description: "Hire date of the employee."
+
+      - name: birthdate
+        description: "Birth date of the employee."
+
+      - name: business_fk
+        description: "Foreign key for the business entity in the person table."
+
+      - name: fullname
+        description: "Full name of the person."
+
+      - name: persontype
+        description: "Type of person (e.g., employee, customer)."
+
+      - name: employee_pk
+        description: "Primary key of the employee; null values are replaced with 'no employee'."

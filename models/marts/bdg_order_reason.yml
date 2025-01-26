@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: bdg_order_reason
+    description: Bridge table linking sales orders with sales reasons.
+    columns:
+      - name: order_salesreason_sk
+        description: Surrogate key for the bridge table.
+        tests:
+          - not_null
+          - unique
+
+      - name: order_sales_fk
+        description: Foreign key linking to the sales orders.
+        tests:
+          - unique
+          - not_null
+
+      - name: salesreason_sales_fk
+        description: Foreign key linking to the sales reasons.
+        tests:
+          - not_null

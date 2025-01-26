@@ -1,21 +1,33 @@
 version: 2
 
 models:
-  - name: dim_customer
-    description: "Customer dimension with detailed information about each customer"
+  - name: int_customer
+    description: "Integrates customer, person, and email data into a unified model."
+
     columns:
       - name: customer_pk
-        description: "Primary key of the customer. Replaces null values of customer_pk with business_fk."
+        description: "Primary key for the customer."
         tests:
           - not_null
           - unique
-      - name: name_customer
-        description: "Full name of the customer. Replaces null values with 'Not registered'."
-      - name: storeid
-        description: "ID of the store associated with the customer."
-      - name: territoryid
-        description: "ID of the territory associated with the customer."
-      - name: accountnumber
-        description: "Account number of the customer."
+
       - name: business_fk
-        description: "Foreign key of the business associated with the customer."
+        description: "Foreign key linking to the business entity."
+
+      - name: storeid
+        description: "Identifier for the store associated with the customer."
+
+      - name: name_customer
+        description: "Customer's full name. Defaults to 'not registered' if not available."
+
+      - name: territoryid
+        description: "Identifier for the customer's territory."
+
+      - name: emailpromotion
+        description: "Indicates if the customer has opted in for email promotions."
+
+      - name: emailaddress
+        description: "Email address of the customer."
+
+      - name: emailaddressid
+        description: "Identifier for the customer's email address."

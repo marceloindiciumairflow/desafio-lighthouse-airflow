@@ -6,18 +6,24 @@ models:
     columns:
       - name: address_pk
         description: "Primary key of the address."
-        test:
+        tests:
           - not_null
-          - unique          
+          - unique 
+
       - name: city
         description: "City name."
+
       - name: name_state
         description: "State name."
+
       - name: countryregion_fk
         description: "Foreign key for the country/region."
+
       - name: name_country
         description: "Country name."
+
       - name: territory_fk
         description: "Foreign key for the territory."
+        
       - name: name_territory
         description: "Territory name."

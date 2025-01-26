@@ -20,14 +20,15 @@ with
 
     , int_product as (
         select
-            orderdetail.orderdetail_pk
-            , orderdetail.order_fk
-            , product.name_product
-            , orderdetail.orderqty 
-            , orderdetail.specialofferid 
-            , orderdetail.unitprice 
-            , orderdetail.unitpricediscount
-            , orderdetail.orderqty * orderdetail.unitprice * (1 - orderdetail.unitpricediscount) as valor_liquido
+            product_pk
+            , orderdetail_pk
+            , order_fk
+            , name_product
+            , orderqty 
+            , specialofferid 
+            , unitprice 
+            , unitpricediscount
+            , orderqty * unitprice * (1 - orderdetail.unitpricediscount) as valor_liquido
         from orderdetail
         left join product
                 on orderdetail.product_fk = product.product_pk
